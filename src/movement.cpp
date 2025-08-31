@@ -124,6 +124,7 @@ int PrevE;//Error at t-1
  * @param brake Brake at end, or coast
  */
 void MoveEncoderPID(PIDDataSet KVals, int Speed, double dist,double AccT, double ABSHDG,bool brake){
+  Speed *= -1;
   double CSpeed=0;
   Zeroing(true,false);
   ChassisDataSet SensorVals;
@@ -163,7 +164,7 @@ if(fabs(CSpeed)<fabs((double)Speed))
   }
   else CStop();
 }
-
+Speed *= -1;
 /** Moves the robot forward or backward. Negative speed moves
  * the robot forward. Positive value moves it backward. (Ik it's fucked up)
  * @param KVals the PID constants
