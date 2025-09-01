@@ -9,12 +9,12 @@ brain  Brain;
 
 // VEXcode device constructors
 controller Controller1 = controller(primary);
-motor LF = motor(PORT11, ratio6_1, true);
-motor LM = motor(PORT12, ratio6_1, true);
-motor RF = motor(PORT18, ratio6_1, false);
-motor RM = motor(PORT19, ratio6_1, false);
-motor LB = motor(PORT13, ratio6_1, true);
-motor RB = motor(PORT20, ratio6_1, false);
+motor LF = motor(PORT1, ratio6_1, true);
+motor LM = motor(PORT2, ratio6_1, true);
+motor RF = motor(PORT4, ratio6_1, false);
+motor RM = motor(PORT5, ratio6_1, false);
+motor LB = motor(PORT3, ratio6_1, true);
+motor RB = motor(PORT6, ratio6_1, false);
 motor Roller = motor(PORT21, ratio6_1, false);
 digital_out Pistake = digital_out(Brain.ThreeWirePort.D);
 digital_out Tilt = digital_out(Brain.ThreeWirePort.B);
