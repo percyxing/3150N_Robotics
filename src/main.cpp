@@ -397,7 +397,7 @@ int main() {
   Competition.drivercontrol(usercontrol);
   // Run the pre-autonomous function.
   pre_auton();
-  
+  void SplitArcade();
   
 
   // Prevent main from exiting with an infinite loop.

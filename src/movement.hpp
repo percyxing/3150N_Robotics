@@ -36,7 +36,7 @@ void MoveTimePID(PIDDataSet KVals, int Speed, double TE,double AccT,double ABSHD
 void IntakeToggle();
 bool state;
 
-
-
+void SplitArcade();
+int deadband;
 
 #endif

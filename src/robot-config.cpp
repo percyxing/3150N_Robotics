@@ -11,10 +11,11 @@ brain  Brain;
 controller Controller1 = controller(primary);
 motor LF = motor(PORT1, ratio6_1, true);
 motor LM = motor(PORT2, ratio6_1, true);
-motor RF = motor(PORT4, ratio6_1, false);
-motor RM = motor(PORT5, ratio6_1, false);
 motor LB = motor(PORT3, ratio6_1, true);
-motor RB = motor(PORT6, ratio6_1, false);
+motor RB = motor(PORT13, ratio6_1, false);
+motor RF = motor(PORT11, ratio6_1, false);
+motor RM = motor(PORT12, ratio6_1, false);
+
 motor Roller = motor(PORT21, ratio6_1, false);
 
 motor IntakeU = motor(PORT21, ratio6_1, false);

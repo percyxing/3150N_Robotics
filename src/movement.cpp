@@ -305,3 +305,28 @@ void IntakeToggle() {
     }
     lastL1 = currentL1;
 }
+
+
+void SplitArcade() {
+  deadband = 5;
+
+    int forward = Controller1.Axis3.position();
+    int turn = Controller1.Axis1.position();
+
+    int leftPower = forward + turn;
+    int rightPower = forward - turn;
+
+    // Apply deadband
+    if (abs(leftPower) < deadband) leftPower = 0;
+    if (abs(rightPower) < deadband) rightPower = 0;
+
+    LF.spin(forward, leftPower, percent);
+    LM.spin(forward, leftPower, percent);
+    LB.spin(forward, leftPower, percent);
+
+    RF.spin(forward, rightPower, percent);
+    RM.spin(forward, rightPower, percent);
+    RB.spin(forward, rightPower, percent);
+
+
+}
