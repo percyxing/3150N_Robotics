@@ -286,18 +286,22 @@ IntakeB.setVelocity(127, percent);
 IntakeU.setVelocity(127, percent);
 //hello
 
+bool intakeDirection = false; // false = forward, true = reverse
+bool lastL1 = false;
+
 void IntakeToggle() {
+    bool currentL1 = Controller1.ButtonL1.pressing();
 
-  if controller1.ButtonL1.pressed() && state == false {
-      state = !state;
-      IntakeU.spin(forward);
-      IntakeB.spin(forward);
-  } else if {controller1.ButtonL1.pressed() && state == true{
-      state = !state;
-      IntakeU.spin(reverse);
-      IntakeB.spin(reverse);
-  }
-
-  }
-   
+    // Only toggle when button is pressed down (not held)
+    if (currentL1 && !lastL1) {
+        intakeDirection = !intakeDirection;
+        if (intakeDirection) {
+            IntakeU.spin(reverse);
+            IntakeB.spin(reverse);
+        } else {
+            IntakeU.spin(forward);
+            IntakeB.spin(forward);
+        }
+    }
+    lastL1 = currentL1;
 }
