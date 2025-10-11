@@ -280,3 +280,24 @@ if(fabs(CSpeed)<fabs((double)Speed))
   wait(200,msec);}
   else CStop();
 }
+
+bool state = false;
+IntakeB.setVelocity(127, percent);
+IntakeU.setVelocity(127, percent);
+//hello
+
+void IntakeToggle() {
+
+  if controller1.ButtonL1.pressed() && state == false {
+      state = !state;
+      IntakeU.spin(forward);
+      IntakeB.spin(forward);
+  } else if {controller1.ButtonL1.pressed() && state == true{
+      state = !state;
+      IntakeU.spin(reverse);
+      IntakeB.spin(reverse);
+  }
+
+  }
+   
+}
