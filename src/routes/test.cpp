@@ -13,7 +13,7 @@ void route1(){
 PIDDataSet TestPara={0,0.0,0.0};
 MoveEncoderPID(TestPara, 127, 19, 0.6 ,0,true);
 TurnMaxTimePID(TestPara, 90, 0.6, true);
-SpinIntakeFor(3, 100, true, false);
+//SpinIntakeFor(3, 100, true);
 MoveEncoderPID(TestPara, 70, 2, 1, 90, true);
 MoveEncoderPID(TestPara, -70, 2, 1, 90, true);
 //now its time to intake the stuff after aline
@@ -24,8 +24,8 @@ Gyro.resetHeading();
 while(Gyro.isCalibrating()) {
     wait(10, msec);
 }
-//228 heading (-132)
-SpinIntakeFor(3, 100, true, false);
+
+//SpinIntakeFor(3, 100, true);
 MoveEncoderPID(TestPara,127, 10, 0.7, 0, false);
 // eating the balls
 MoveEncoderPID(TestPara,-127, 10, 0.7, 0, false);

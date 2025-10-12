@@ -1,5 +1,5 @@
 #include "vex.h"
-
+using namespace vex;
 #include "math.h"
 #include "screen_gui.hpp"
 #include "helper_functions.hpp"
@@ -19,21 +19,15 @@ int JX;
 //General Sect;
 //This section includes all general codes for drive and auto
 
-
-/** Resets the robot's drive train and inertial sensor
- * 
- * @param dist the 
- * @param HDG the
- */
 void Zeroing(bool dist, bool HDG)
 {
   if(dist){
-  LF.resetPosition();
-  LM.resetPosition();
-  LB.resetPosition();
-  RF.resetPosition();
-  RM.resetPosition();
-  RB.resetPosition();
+    LF.resetPosition();
+    LM.resetPosition();
+    LB.resetPosition();
+    RF.resetPosition();
+    RM.resetPosition();
+    RB.resetPosition();
   }
   if(HDG){
     Gyro.setHeading(0,degrees);
@@ -54,75 +48,63 @@ ChassisDataSet ChassisUpdate()
 
 void Move(int left, int right)
 {
-LF.setMaxTorque(100,percent);
-LM.setMaxTorque(100,percent);
-LB.setMaxTorque(100,percent);
-RF.setMaxTorque(100,percent);
-RM.setMaxTorque(100,percent);
-RB.setMaxTorque(100,percent);
+  LF.setMaxTorque(100,percent);
+  LM.setMaxTorque(100,percent);
+  LB.setMaxTorque(100,percent);
+  RF.setMaxTorque(100,percent);
+  RM.setMaxTorque(100,percent);
+  RB.setMaxTorque(100,percent);
 
-LF.spin(forward,(double)left/100.0*11,volt);
-LM.spin(forward,(double)left/100.0*11,volt);
-LB.spin(forward,(double)left/100.0*11,volt);
-RF.spin(forward,(double)right/100.0*11,volt);
-RM.spin(forward,(double)right/100.0*11,volt);
-RB.spin(forward,(double)right/100.0*11,volt);
+  LF.spin(forward,(double)left/100.0*11,volt);
+  LM.spin(forward,(double)left/100.0*11,volt);
+  LB.spin(forward,(double)left/100.0*11,volt);
+  RF.spin(forward,(double)right/100.0*11,volt);
+  RM.spin(forward,(double)right/100.0*11,volt);
+  RB.spin(forward,(double)right/100.0*11,volt);
 }
 
 void BStop()
 {
-LF.setStopping(brake);
-LM.setStopping(brake);
-LB.setStopping(brake);
-RF.setStopping(brake);
-RM.setStopping(brake);
-RB.setStopping(brake);
+  LF.setStopping(brake);
+  LM.setStopping(brake);
+  LB.setStopping(brake);
+  RF.setStopping(brake);
+  RM.setStopping(brake);
+  RB.setStopping(brake);
 
-LF.stop();
-LM.stop();
-LB.stop();
-RF.stop();
-RM.stop();
-RB.stop();
+  LF.stop();
+  LM.stop();
+  LB.stop();
+  RF.stop();
+  RM.stop();
+  RB.stop();
 }
 
 void CStop()
 {
-LF.setStopping(coast);
-LM.setStopping(coast);
-LB.setStopping(coast);
-RF.setStopping(coast);
-RM.setStopping(coast);
-RB.setStopping(coast);
+  LF.setStopping(coast);
+  LM.setStopping(coast);
+  LB.setStopping(coast);
+  RF.setStopping(coast);
+  RM.setStopping(coast);
+  RB.setStopping(coast);
 
-LF.stop();
-LM.stop();
-LB.stop();
-RF.stop();
-RM.stop();
-RB.stop();
+  LF.stop();
+  LM.stop();
+  LB.stop();
+  RF.stop();
+  RM.stop();
+  RB.stop();
 }
-
-
-
 
 void RunRoller(int val)
 {
-Roller.setMaxTorque(100,percent);
-Roller.spin(forward,(double)val/100.0*12,volt);
+  Roller.setMaxTorque(100,percent);
+  Roller.spin(forward,(double)val/100.0*12,volt);
 }
 
 int PrevE;//Error at t-1
 
-/** Moves the robot forward or backward. Negative speed moves
- * the robot forward. Positive value moves it backward. (Ik it's fucked up)
- * @param KVals the PID constants
- * @param Speed the speed, from -100 to 100
- * @param dist distance travelled, in inches
- * @param AccT time to max speed (s)
- * @param ABSHDG absolute heading of the robot
- * @param brake Brake at end, or coast
- */
 void MoveEncoderPID(PIDDataSet KVals, int Speed, double dist,double AccT, double ABSHDG,bool brake){
   Speed *= -1;
   double CSpeed=0;
@@ -139,24 +121,23 @@ void MoveEncoderPID(PIDDataSet KVals, int Speed, double dist,double AccT, double
 
   while(fabs(SensorVals.Avg) <= fabs(dist))
   {
-    //std::cout << SensorVals.Avg << " " << dist << std::endl;
-if(fabs(CSpeed)<fabs((double)Speed))
-{
-  CSpeed+=Speed/AccT*0.02;
-}
+    if(fabs(CSpeed)<fabs((double)Speed))
+    {
+      CSpeed+=Speed/AccT*0.02;
+    }
 
-  SensorVals=ChassisUpdate();
-  LGV=SensorVals.HDG-ABSHDG;
-  if(LGV>180) LGV=LGV-360;
-  PVal=KVals.kp*LGV;
-  IVal=IVal+KVals.ki*LGV*0.02;
-  DVal=KVals.kd*(LGV-PrevE);
+    SensorVals=ChassisUpdate();
+    LGV=SensorVals.HDG-ABSHDG;
+    if(LGV>180) LGV=LGV-360;
+    PVal=KVals.kp*LGV;
+    IVal=IVal+KVals.ki*LGV*0.02;
+    DVal=KVals.kd*(LGV-PrevE);
 
-  Correction=PVal+IVal+DVal/0.02;
+    Correction=PVal+IVal+DVal/0.02;
 
-  Move(CSpeed-Correction,CSpeed+Correction);
-  PrevE=LGV;
-  wait(20, msec);
+    Move(CSpeed-Correction,CSpeed+Correction);
+    PrevE=LGV;
+    wait(20, msec);
   }
   if(brake){
     BStop();
@@ -164,14 +145,7 @@ if(fabs(CSpeed)<fabs((double)Speed))
   }
   else CStop();
 }
-Speed *= -1;
-/** Moves the robot forward or backward. Negative speed moves
- * the robot forward. Positive value moves it backward. (Ik it's fucked up)
- * @param KVals the PID constants
- * @param DeltaAngle the absolute heading to turn to
- * @param TE time to calculate turn (not time to turn)
- * @param brake Brake at end, or coast
- */
+
 void TurnMaxTimePID(PIDDataSet KVals,double DeltaAngle,double TE, bool brake){
   double CSpeed=0;
   Zeroing(true,false);
@@ -187,21 +161,21 @@ void TurnMaxTimePID(PIDDataSet KVals,double DeltaAngle,double TE, bool brake){
 
   while(Brain.Timer.value() <= TE)
   {
-  SensorVals=ChassisUpdate();
-  LGV=SensorVals.HDG-DeltaAngle;
-  if(LGV>180) LGV=LGV-360;
-  PVal=KVals.kp*LGV;
-  IVal=IVal+KVals.ki*LGV*0.02;
-  DVal=KVals.kd*(LGV-PrevE);
+    SensorVals=ChassisUpdate();
+    LGV=SensorVals.HDG-DeltaAngle;
+    if(LGV>180) LGV=LGV-360;
+    PVal=KVals.kp*LGV;
+    IVal=IVal+KVals.ki*LGV*0.02;
+    DVal=KVals.kd*(LGV-PrevE);
 
-  Correction=PVal+IVal+DVal/0.02;
+    Correction=PVal+IVal+DVal/0.02;
 
-  Move(CSpeed-Correction,CSpeed+Correction);
-  PrevE=LGV;
-  wait(20, msec);
+    Move(CSpeed-Correction,CSpeed+Correction);
+    PrevE=LGV;
+    wait(20, msec);
   }
   if(brake){BStop();
-  wait(180,msec);}
+    wait(180,msec);}
   else CStop();
 }
 
@@ -221,27 +195,26 @@ void MaxTimePIDTurnOneSide(PIDDataSet KVals,double DeltaAngle,double TE, bool br
 
   while(Brain.Timer.value() <= TE)
   {
-  SensorVals=ChassisUpdate();
-  LGV=SensorVals.HDG-DeltaAngle;
-  if(LGV>180) LGV=LGV-360;
-  PVal=KVals.kp*LGV;
-  IVal=IVal+KVals.ki*LGV*0.02;
-  DVal=KVals.kd*(LGV-PrevE);
+    SensorVals=ChassisUpdate();
+    LGV=SensorVals.HDG-DeltaAngle;
+    if(LGV>180) LGV=LGV-360;
+    PVal=KVals.kp*LGV;
+    IVal=IVal+KVals.ki*LGV*0.02;
+    DVal=KVals.kd*(LGV-PrevE);
 
-  Correction=PVal+IVal+DVal/0.02;
-LV=-CSpeed+Correction;
-RV=-CSpeed-Correction;
-if(LV>=0)LV=0;
-if(RV>=0)RV=0;
-  Move(LV,RV);
-  PrevE=LGV;
-  wait(20, msec);
+    Correction=PVal+IVal+DVal/0.02;
+    LV=-CSpeed+Correction;
+    RV=-CSpeed-Correction;
+    if(LV>=0)LV=0;
+    if(RV>=0)RV=0;
+    Move(LV,RV);
+    PrevE=LGV;
+    wait(20, msec);
   }
   if(brake){BStop();
-  wait(200,msec);}
+    wait(200,msec);}
   else CStop();
 }
-
 
 void MoveTimePID(PIDDataSet KVals, int Speed, double TE,double AccT,double ABSHDG, bool brake){
   double CSpeed=0;
@@ -258,63 +231,50 @@ void MoveTimePID(PIDDataSet KVals, int Speed, double TE,double AccT,double ABSHD
 
   while(Brain.Timer.value() <= TE)
   {
-if(fabs(CSpeed)<fabs((double)Speed))
-{
-  CSpeed+=Speed/AccT*0.02;
-}
+    if(fabs(CSpeed)<fabs((double)Speed))
+    {
+      CSpeed+=Speed/AccT*0.02;
+    }
 
-  SensorVals=ChassisUpdate();
+    SensorVals=ChassisUpdate();
     LGV=SensorVals.HDG-ABSHDG;
-  if(LGV>180) LGV=LGV-360;
-  PVal=KVals.kp*LGV;
-  IVal=IVal+KVals.ki*LGV*0.02;
-  DVal=KVals.kd*(LGV-PrevE);
+    if(LGV>180) LGV=LGV-360;
+    PVal=KVals.kp*LGV;
+    IVal=IVal+KVals.ki*LGV*0.02;
+    DVal=KVals.kd*(LGV-PrevE);
 
-  Correction=PVal+IVal+DVal/0.02;
+    Correction=PVal+IVal+DVal/0.02;
 
-  Move(-CSpeed-Correction,-CSpeed+Correction);
-  PrevE=LGV;
-  wait(20, msec);
+    Move(-CSpeed-Correction,-CSpeed+Correction);
+    PrevE=LGV;
+    wait(20, msec);
   }
   if(brake){BStop();
-  wait(200,msec);}
+    wait(200,msec);}
   else CStop();
 }
 
-bool state = false;
-IntakeB.setVelocity(127, percent);
-IntakeU.setVelocity(127, percent);
-//hello
 
 bool intakeDirection = false; // false = forward, true = reverse
 bool lastL1 = false;
 
 void IntakeToggle() {
-    bool currentL1 = Controller1.ButtonL1.pressing();
+  IntakeB.setVelocity(127, pct);
+  IntakeU.setVelocity(127, pct);
+  bool currentL1 = Controller1.ButtonL1.pressing();
 
-    // Only toggle when button is pressed down (not held)
-    if (currentL1 && !lastL1) {
-        intakeDirection = !intakeDirection;
-        if (intakeDirection) {
-            IntakeU.spin(reverse);
-            IntakeB.spin(reverse);
-        } else {
-            IntakeU.spin(forward);
-            IntakeB.spin(forward);
-        }
-    }
-    lastL1 = currentL1;
-}
-//Motor.spinFor(direction, value, units, velocity, units_v, wait)
-//true is reversed, false is forward
-void SpinIntakeFor(int second, int velocity, bool reverse, bool wait) {
-    if (reverse) {
-        IntakeU.spinFor(vex::reverse, second, vex::seconds, velocity, vex::percent, wait);
-        IntakeB.spinFor(vex::reverse, second, vex::seconds, velocity, vex::percent, wait);
-    } else {
-        IntakeU.spinFor(vex::forward, second, vex::seconds, velocity, vex::percent, wait);
-        IntakeB.spinFor(vex::forward, second, vex::seconds, velocity, vex::percent, wait);
-    }
+  // Only toggle when button is pressed down (not held)
+  if (currentL1 && !lastL1) {
+      intakeDirection = !intakeDirection;
+      if (intakeDirection) {
+          IntakeU.spin(reverse);
+          IntakeB.spin(reverse);
+      } else {
+          IntakeU.spin(forward);
+          IntakeB.spin(forward);
+      }
+  }
+  lastL1 = currentL1;
 }
 
 
@@ -322,23 +282,21 @@ void SpinIntakeFor(int second, int velocity, bool reverse, bool wait) {
 void SplitArcade() {
   deadband = 5;
 
-    int forward = Controller1.Axis3.position();
-    int turn = Controller1.Axis1.position();
+  int fwd = Controller1.Axis3.position();
+  int turn = Controller1.Axis1.position();
 
-    int leftPower = forward + turn;
-    int rightPower = forward - turn;
+  int leftPower = fwd + turn;
+  int rightPower = fwd - turn;
 
-    // Apply deadband
-    if (abs(leftPower) < deadband) leftPower = 0;
-    if (abs(rightPower) < deadband) rightPower = 0;
+  // Apply deadband
+  if (abs(leftPower) < deadband) leftPower = 0;
+  if (abs(rightPower) < deadband) rightPower = 0;
 
-    LF.spin(forward, leftPower, percent);
-    LM.spin(forward, leftPower, percent);
-    LB.spin(forward, leftPower, percent);
+  LF.spin(forward, leftPower, pct);
+  LM.spin(forward, leftPower, pct);
+  LB.spin(forward, leftPower, pct);
 
-    RF.spin(forward, rightPower, percent);
-    RM.spin(forward, rightPower, percent);
-    RB.spin(forward, rightPower, percent);
-
-
+  RF.spin(forward, rightPower, pct);
+  RM.spin(forward, rightPower, pct);
+  RB.spin(forward, rightPower, pct);
 }
