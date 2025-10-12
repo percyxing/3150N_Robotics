@@ -35,9 +35,9 @@ void MaxTimePIDTurnOneSide(PIDDataSet KVals,double DeltaAngle,double TE, bool br
 void MoveTimePID(PIDDataSet KVals, int Speed, double TE,double AccT,double ABSHDG, bool brake);
 
 void IntakeToggle();
-bool state;
+
 
 void SplitArcade();
-int deadband;
+extern int deadband;
 
 #endif

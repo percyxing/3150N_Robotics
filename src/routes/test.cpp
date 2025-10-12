@@ -16,7 +16,7 @@ TurnMaxTimePID(TestPara, 90, 0.6, true);
 //SpinIntakeFor(3, 100, true);
 MoveEncoderPID(TestPara, 70, 2, 1, 90, true);
 MoveEncoderPID(TestPara, -70, 2, 1, 90, true);
-//now its time to intake the stuff after aline
+//now its time to intake the stuff after a line
 MoveEncoderPID(TestPara, -127, 35, 2 ,90, false);
 TurnMaxTimePID(TestPara, -132, 0.9, true);
 //reset heaidng parked in goal

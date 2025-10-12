@@ -280,7 +280,7 @@ void IntakeToggle() {
 
 
 void SplitArcade() {
-  deadband = 5;
+  int deadband = 5;
 
   int fwd = Controller1.Axis3.position();
   int turn = Controller1.Axis1.position();
