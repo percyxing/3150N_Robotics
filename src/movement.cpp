@@ -99,8 +99,10 @@ void CStop()
 
 void RunRoller(int val)
 {
-  Roller.setMaxTorque(100,percent);
-  Roller.spin(forward,(double)val/100.0*12,volt);
+  IntakeB.setMaxTorque(100,percent);
+  IntakeU.setMaxTorque(100,percent);
+  IntakeB.spin(forward,(double)val/100.0*12,volt);
+  IntakeU.spin(forward,(double)val/100.0*12,volt);
 }
 
 int PrevE;//Error at t-1
@@ -257,25 +259,6 @@ void MoveTimePID(PIDDataSet KVals, int Speed, double TE,double AccT,double ABSHD
 
 bool intakeDirection = false; // false = forward, true = reverse
 bool lastL1 = false;
-
-void IntakeToggle() {
-  IntakeB.setVelocity(127, pct);
-  IntakeU.setVelocity(127, pct);
-  bool currentL1 = Controller1.ButtonL1.pressing();
-
-  // Only toggle when button is pressed down (not held)
-  if (currentL1 && !lastL1) {
-      intakeDirection = !intakeDirection;
-      if (intakeDirection) {
-          IntakeU.spin(reverse);
-          IntakeB.spin(reverse);
-      } else {
-          IntakeU.spin(forward);
-          IntakeB.spin(forward);
-      }
-  }
-  lastL1 = currentL1;
-}
 
 
 

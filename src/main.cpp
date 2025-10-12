@@ -279,18 +279,21 @@ CStop();
 }
 int RV;
 int LV;
+
 int DriveTask(void){
-  while(true)
-  {
-    EXIT=true;
-    RV=-Controller1.Axis3.position(percent)-Controller1.Axis1.position(percent);
-    LV=-Controller1.Axis3.position(percent)+Controller1.Axis1.position(percent);
-    Move(LV,RV);
-  }
+//  while(true)
+//  {
+//    EXIT=true;
+//    RV=-Controller1.Axis3.position(percent)-Controller1.Axis1.position(percent);
+//    LV=-Controller1.Axis3.position(percent)+Controller1.Axis1.position(percent);
+//    Move(LV,RV);
+//  }
 
 return 0;
 }
 int V;
+
+
 int ATask(void)
 {
   double pow;
