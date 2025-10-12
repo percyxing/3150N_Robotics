@@ -13,7 +13,7 @@
 #include "screen_gui.hpp"
 #include "movement.hpp"
 #include "routes/routes.hpp"
-//helo bryan
+
 using namespace vex;
 
 // A global instance of competition
