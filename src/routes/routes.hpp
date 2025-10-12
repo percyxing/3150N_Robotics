@@ -7,4 +7,5 @@
 
 extern void test();
 extern void test2();
+extern void route1();
 #endif
