@@ -307,13 +307,13 @@ void IntakeToggle() {
 }
 //Motor.spinFor(direction, value, units, velocity, units_v, wait)
 //true is reversed, false is forward
-void SpinIntakeFor(int second,int velocity, bool reverse, bool wait) {
+void SpinIntakeFor(int second, int velocity, bool reverse, bool wait) {
     if (reverse) {
-        IntakeU.spinFor(reverse, second, seconds, velocity, percent, wait = wait);
-        IntakeB.spinFor(reverse, second, seconds, velocity,percent, wait = wait);
+        IntakeU.spinFor(vex::reverse, second, vex::seconds, velocity, vex::percent, wait);
+        IntakeB.spinFor(vex::reverse, second, vex::seconds, velocity, vex::percent, wait);
     } else {
-        IntakeU.spinFor(forward, second, seconds, velocity, percent, wait = wait);
-        IntakeB.spinFor(forward, second, seconds, velocity, percent, wait = wait);
+        IntakeU.spinFor(vex::forward, second, vex::seconds, velocity, vex::percent, wait);
+        IntakeB.spinFor(vex::forward, second, vex::seconds, velocity, vex::percent, wait);
     }
 }
 
