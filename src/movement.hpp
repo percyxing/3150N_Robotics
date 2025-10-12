@@ -20,6 +20,7 @@ struct PIDDataSet{
   double ki;
   double kd;
 };
+extern void SpinIntakeFor(int second,int velocity, bool reverse, bool wait);
 
 extern void Zeroing(bool dist, bool HDG);
 extern ChassisDataSet ChassisUpdate();

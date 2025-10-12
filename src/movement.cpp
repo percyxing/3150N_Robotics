@@ -305,6 +305,18 @@ void IntakeToggle() {
     }
     lastL1 = currentL1;
 }
+//Motor.spinFor(direction, value, units, velocity, units_v, wait)
+//true is reversed, false is forward
+void SpinIntakeFor(int second,int velocity, bool reverse, bool wait) {
+    if (reverse) {
+        IntakeU.spinFor(reverse, second, seconds, velocity, percent, wait = wait);
+        IntakeB.spinFor(reverse, second, seconds, velocity,percent, wait = wait);
+    } else {
+        IntakeU.spinFor(forward, second, seconds, velocity, percent, wait = wait);
+        IntakeB.spinFor(forward, second, seconds, velocity, percent, wait = wait);
+    }
+}
+
 
 
 void SplitArcade() {

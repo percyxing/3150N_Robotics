@@ -11,14 +11,28 @@
 void route1(){
 
 PIDDataSet TestPara={0,0.0,0.0};
-MoveEncoderPID(TestPara, 100, 36 , 0.4,0,true);
-
-
-
+MoveEncoderPID(TestPara, 127, 19, 0.6 ,0,true);
+TurnMaxTimePID(TestPara, 90, 0.6, true);
+SpinIntakeFor(3, 100, true, false);
+MoveEncoderPID(TestPara, 70, 2, 1, 90, true);
+MoveEncoderPID(TestPara, -70, 2, 1, 90, true);
+//now its time to intake the stuff after aline
+MoveEncoderPID(TestPara, -127, 35, 2 ,90, false);
+TurnMaxTimePID(TestPara, -132, 0.9, true);
+//reset heaidng parked in goal
+Gyro.resetHeading();
+while(Gyro.isCalibrating()) {
+    wait(10, msec);
 }
-
-
-
+//228 heading (-132)
+SpinIntakeFor(3, 100, true, false);
+MoveEncoderPID(TestPara,127, 10, 0.7, 0, false);
+// eating the balls
+MoveEncoderPID(TestPara,-127, 10, 0.7, 0, false);
+}
+//turn 180 and move 2 feet forward
+TurnMaxTimePID(TestPara, 180, 0.7, true);
+MoveEncoderPID(TestPara, 127, 24, 1, 180, false);
 
 
 void test() {
