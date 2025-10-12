@@ -29,11 +29,11 @@ SpinIntakeFor(3, 100, true, false);
 MoveEncoderPID(TestPara,127, 10, 0.7, 0, false);
 // eating the balls
 MoveEncoderPID(TestPara,-127, 10, 0.7, 0, false);
-}
+
 //turn 180 and move 2 feet forward
 TurnMaxTimePID(TestPara, 180, 0.7, true);
 MoveEncoderPID(TestPara, 127, 24, 1, 180, false);
-
+}
 
 void test() {
     // declare initial conditions
