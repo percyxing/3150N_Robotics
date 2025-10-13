@@ -119,7 +119,6 @@ void RunRollerBottom(int val)
 int PrevE;//Error at t-1
 
 void MoveEncoderPID(PIDDataSet KVals, int Speed, double dist,double AccT, double ABSHDG,bool brake){
-  Speed *= -1;
   double CSpeed=0;
   Zeroing(true,false);
   ChassisDataSet SensorVals;
