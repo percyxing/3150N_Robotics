@@ -297,17 +297,17 @@ int V;
 int ATask(void)
 {
   double pow;
+  double bottomPow;
     while(true)
   {
     pow=((Controller1.ButtonR2.pressing()-Controller1.ButtonR1.pressing())*100);//Calculate intake power, if button pressed, button.pressing returns 1
-    RunRoller(-pow);
-    
-  
-  //RunPuncher((Controller1.ButtonB.pressing())*100);
+    RunRollerTop(-pow);
+      bottomPow = ((Controller1.ButtonL1.pressing() - Controller1.ButtonL2.pressing()) * 100);
+    RunRollerBottom(bottomPow);
   }
-  
   return 0;
 }
+
 
 int ButtonPressingX,XTaskActiv;
 int ButtonPressingY,YTaskActiv;
