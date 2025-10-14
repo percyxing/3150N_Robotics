@@ -7,23 +7,23 @@
 // TurnMaxTimePID(TestPara, Desired Heading -180 to 180, time out to calculate turn, Braking?)
 // MoveTimePID(TestPara, motor speed, time traveled (sec), time to full speed, heading, false);
 
-
+//as value 3
 void route1(){
 
 PIDDataSet TestPara={0,0.0,0.0};
+RunRollerBottom(100);
 MoveEncoderPID(TestPara, 127, 19, 0.6 ,0,true);
 TurnMaxTimePID(TestPara, 90, 0.6, true);
-//SpinIntakeFor(3, 100, true);
+
 MoveEncoderPID(TestPara, 70, 2, 1, 90, true);
+RunRollerBottom(-100);
 MoveEncoderPID(TestPara, -70, 2, 1, 90, true);
+RunrollerBottom(0);
 //now its time to intake the stuff after a line
 MoveEncoderPID(TestPara, -127, 35, 2 ,90, false);
 TurnMaxTimePID(TestPara, -132, 0.9, true);
 //reset heaidng parked in goal
-Gyro.resetHeading();
-while(Gyro.isCalibrating()) {
-    wait(10, msec);
-}
+Zeroing(false,true);
 
 //SpinIntakeFor(3, 100, true);
 MoveEncoderPID(TestPara,127, 10, 0.7, 0, false);

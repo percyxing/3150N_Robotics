@@ -243,7 +243,7 @@ if(AutoSelectorVal==2)// awp mid steal
 
 if(AutoSelectorVal==3)// 5 Ball rush
 {
-  
+  route1();
 } 
 
 if(AutoSelectorVal==4)// Elim-Steal
@@ -369,9 +369,7 @@ void usercontrol(void) {
   EXIT=true;//Force Exit Autosel once drivercontrol began.
   // User control code here, inside the loop
   while (1) {
-    // This is the main execution loop for the user control program.
-    // Each time through the loop your program should update motor + servo
-    // values based on feedback from the joysticks.
+
     
      
     
