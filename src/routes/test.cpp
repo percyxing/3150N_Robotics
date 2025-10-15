@@ -18,7 +18,7 @@ TurnMaxTimePID(TestPara, 90, 0.6, true);
 MoveEncoderPID(TestPara, 70, 2, 1, 90, true);
 RunRollerBottom(-100);
 MoveEncoderPID(TestPara, -70, 2, 1, 90, true);
-RunrollerBottom(0);
+RunRollerBottom(0);
 //now its time to intake the stuff after a line
 MoveEncoderPID(TestPara, -127, 35, 2 ,90, false);
 TurnMaxTimePID(TestPara, -132, 0.9, true);
