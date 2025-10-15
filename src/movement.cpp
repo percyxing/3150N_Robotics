@@ -273,24 +273,3 @@ bool lastL1 = false;
 
 
 
-void SplitArcade() {
-  int deadband = 5;
-
-  int fwd = Controller1.Axis3.position();
-  int turn = Controller1.Axis1.position();
-
-  int leftPower = fwd + turn;
-  int rightPower = fwd - turn;
-
-  // Apply deadband
-  if (abs(leftPower) < deadband) leftPower = 0;
-  if (abs(rightPower) < deadband) rightPower = 0;
-
-  LF.spin(forward, leftPower, pct);
-  LM.spin(forward, leftPower, pct);
-  LB.spin(forward, leftPower, pct);
-
-  RF.spin(forward, rightPower, pct);
-  RM.spin(forward, rightPower, pct);
-  RB.spin(forward, rightPower, pct);
-}

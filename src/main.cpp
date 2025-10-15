@@ -281,13 +281,29 @@ int RV;
 int LV;
 
 int DriveTask(void){
-//  while(true)
-//  {
-//    EXIT=true;
-//    RV=-Controller1.Axis3.position(percent)-Controller1.Axis1.position(percent);
-//    LV=-Controller1.Axis3.position(percent)+Controller1.Axis1.position(percent);
-//    Move(LV,RV);
-//  }
+  while(true)
+  {
+    EXIT=true;
+deadband = 5;
+
+  int fwd = Controller1.Axis3.position();
+  int turn = Controller1.Axis1.position();
+
+  int leftPower = fwd + turn;
+  int rightPower = fwd - turn;
+
+  // Apply deadband
+  if (abs(leftPower) < deadband) leftPower = 0;
+  if (abs(rightPower) < deadband) rightPower = 0;
+
+  LF.spin(forward, leftPower, pct);
+  LM.spin(forward, leftPower, pct);
+  LB.spin(forward, leftPower, pct);
+
+  RF.spin(forward, rightPower, pct);
+  RM.spin(forward, rightPower, pct);
+  RB.spin(forward, rightPower, pct);
+  }
 
 return 0;
 }
