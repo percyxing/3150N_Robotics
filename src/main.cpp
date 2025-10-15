@@ -281,13 +281,29 @@ int RV;
 int LV;
 
 int DriveTask(void){
-//  while(true)
-//  {
-//    EXIT=true;
-//    RV=-Controller1.Axis3.position(percent)-Controller1.Axis1.position(percent);
-//    LV=-Controller1.Axis3.position(percent)+Controller1.Axis1.position(percent);
-//    Move(LV,RV);
-//  }
+  while(true)
+  {
+    EXIT=true;
+    int deadband = 5;
+
+    int fwd = Controller1.Axis3.position();
+    int turn = Controller1.Axis1.position();
+
+    int leftPower = fwd + turn;
+    int rightPower = fwd - turn;
+
+    // Apply deadband
+    if (abs(leftPower) < deadband) leftPower = 0;
+    if (abs(rightPower) < deadband) rightPower = 0;
+
+    LF.spin(forward, leftPower, pct);
+    LM.spin(forward, leftPower, pct);
+    LB.spin(forward, leftPower, pct);
+
+    RF.spin(forward, rightPower, pct);
+    RM.spin(forward, rightPower, pct);
+    RB.spin(forward, rightPower, pct);
+  }
 
 return 0;
 }
@@ -368,15 +384,14 @@ int PTask(void)
 
 void usercontrol(void) {
   EXIT=true;//Force Exit Autosel once drivercontrol began.
+  
+  // Create tasks once, outside the loop
+  task Dtask=task(DriveTask);
+  task Atask=task(ATask);
+  task Ptask=task(PTask);
+  
   // User control code here, inside the loop
   while (1) {
-
-    
-     
-    
-    task Dtask=task(DriveTask);
-    task Atask=task(ATask); // atast is like drivercontrol
-    task Ptask=task(PTask);
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to
     // update your motors, etc.
