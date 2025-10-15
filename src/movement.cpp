@@ -104,13 +104,13 @@ void RunRoller(int val)
   IntakeB.spin(forward,(double)val/100.0*12,volt);
   IntakeU.spin(forward,(double)val/100.0*12,volt);
 }
-void RunrollerTop(int val)
+void RunRollerTop(int val)
 {
   IntakeU.setMaxTorque(100,percent);
   IntakeU.spin(forward,(double)val/100.0*12,volt);
 }
 
-void RunrollerBottom(int val)
+void RunRollerBottom(int val)
 {
   IntakeB.setMaxTorque(100,percent);
   IntakeB.spin(forward,(double)val/100.0*12,volt);
