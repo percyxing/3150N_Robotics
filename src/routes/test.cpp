@@ -11,14 +11,14 @@
 void route1(){
 
 PIDDataSet TestPara={0,0.0,0.0};
-RunRollerBottom(100);
+//RunRollerBottom(100.0);
 MoveEncoderPID(TestPara, 127, 19, 0.6 ,0,true);
 TurnMaxTimePID(TestPara, 90, 0.6, true);
 
 MoveEncoderPID(TestPara, 70, 2, 1, 90, true);
-RunRollerBottom(-100);
+//RunRollerBottom(-100.0);
 MoveEncoderPID(TestPara, -70, 2, 1, 90, true);
-RunrollerBottom(0);
+//RunRollerBottom(0.0);
 //now its time to intake the stuff after a line
 MoveEncoderPID(TestPara, -127, 35, 2 ,90, false);
 TurnMaxTimePID(TestPara, -132, 0.9, true);
@@ -54,7 +54,6 @@ void test() {
     Tilt.set(false);
     MoveEncoderPID(TestPara, 100, 5, 0.4, 0, true);
     TurnMaxTimePID(TestPara, -100, 0.9, true);
-    RunRoller(-100);
     //wait(1000,msec);
     MoveEncoderPID(TestPara, -100, 24, 0.5, -100, true);
     TurnMaxTimePID(TestPara, 40, 0.9, true);
@@ -83,7 +82,7 @@ void test() {
 }
 void test2(){  
     
-     PIDDataSet TestPara={1.5,0.1,0.15};
+    PIDDataSet TestPara={1.5,0.1,0.15};
     MoveEncoderPID(TestPara, 100, 12, 0.4, 0, true);
     TurnMaxTimePID(TestPara, 30, 0.5,true);
     MoveEncoderPID(TestPara, 100, 13, 0.4, 30, true);
@@ -94,7 +93,6 @@ void test2(){
     Tilt.set(false);
     MoveEncoderPID(TestPara, 100, 3, 0.4,30, true);
     TurnMaxTimePID(TestPara, -84, 0.8, true);
-    RunRoller(-100);
     MoveEncoderPID(TestPara, -100, 25, 0.4,-84, true);
     TurnMaxTimePID(TestPara,60, 0.5, true);
     Pistake.set(true);
