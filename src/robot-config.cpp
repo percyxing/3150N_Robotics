@@ -16,10 +16,10 @@ motor RB = motor(PORT13, ratio6_1, false);
 motor RF = motor(PORT11, ratio6_1, false);
 motor RM = motor(PORT12, ratio6_1, false);
 
-motor Roller = motor(PORT21, ratio6_1, false);
+//motor Roller = motor(PORT21, ratio6_1, false);
 
-motor IntakeU = motor(PORT21, ratio6_1, false);
-motor IntakeB = motor(PORT10, ratio6_1, false);
+motor IntakeU = motor(PORT10, ratio6_1, false);
+motor IntakeB = motor(PORT21, ratio6_1, false);
 
 digital_out Pistake = digital_out(Brain.ThreeWirePort.D);
 digital_out Tilt = digital_out(Brain.ThreeWirePort.B);
