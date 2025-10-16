@@ -232,18 +232,18 @@ Zeroing(true,true);
 //Put Auto route function into if statements to use autoselector
 if(AutoSelectorVal==1)//Quali close 6 triball auto 
 {
-  test();
+ // test();
 }
 
 if(AutoSelectorVal==2)// awp mid steal
 {
-  test2();
+ // test2();
 
 }
 
 if(AutoSelectorVal==3)// 5 Ball rush
 {
-  route1();
+//  route1();
 } 
 
 if(AutoSelectorVal==4)// Elim-Steal

@@ -20,6 +20,8 @@ motor RM = motor(PORT12, ratio6_1, false);
 
 motor IntakeU = motor(PORT10, ratio6_1, false);
 motor IntakeB = motor(PORT21, ratio6_1, false);
+IntakeU.setVelocity(600, rpm);
+IntakeB.setVelocity(600, rpm);
 
 digital_out Pistake = digital_out(Brain.ThreeWirePort.D);
 digital_out Tilt = digital_out(Brain.ThreeWirePort.B);
