@@ -69,7 +69,7 @@ Zeroing(true,true);
 DisplayAutoSelector();
 DisplayWords();
 
-//task AutoSelTask=task(ScreenSelMain);
+task AutoSelTask=task(ScreenSelMain);
   while(!EXIT)
 {
 if(Brain.Screen.xPosition()<100)
