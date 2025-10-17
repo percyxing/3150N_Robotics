@@ -35,7 +35,7 @@ competition Competition;
 bool SP;
 bool EXIT;
 void pre_auton(void) {
-   EXIT=false;
+  EXIT=false;
   Tilt.set(true);
   Clamp.set(true);
   PX=0;
