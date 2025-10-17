@@ -24,6 +24,7 @@ motor IntakeB = motor(PORT21, ratio6_1, false);
 digital_out Pistake = digital_out(Brain.ThreeWirePort.D);
 digital_out Tilt = digital_out(Brain.ThreeWirePort.B);
 digital_out Clamp = digital_out(Brain.ThreeWirePort.A);
+digital_out IntakeLift = digital_out(Brain.ThreeWirePort.C);
 inertial Gyro = inertial(PORT2);
 //Naming convention: 
 // Important variables

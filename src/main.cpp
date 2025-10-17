@@ -230,10 +230,9 @@ Zeroing(true,true);
 
 //can start editing if nessary
 //Put Auto route function into if statements to use autoselector
-if(AutoSelectorVal==1)//Quali close 6 triball auto 
+if(AutoSelectorVal==1)
 {
- // test();
- //test bryan
+  twoGoalScoreLeft();
 }
 
 if(AutoSelectorVal==2)// awp mid steal
@@ -382,6 +381,14 @@ int PTask(void)
 /*                                                                           */
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
+void pneumaticControl() {
+  if (Controller1.ButtonL1.pressing()) {
+    IntakeLift.set(true); // Activate the piston
+  } else if (Controller1.ButtonL2.pressing()) {
+    IntakeLift.set(false); // Deactivate the piston
+  }
+}
+
 
 void usercontrol(void) {
   EXIT=true;//Force Exit Autosel once drivercontrol began.
@@ -390,7 +397,9 @@ void usercontrol(void) {
   task Dtask=task(DriveTask);
   task Atask=task(ATask);
   task Ptask=task(PTask);
-  
+
+}
+
   // User control code here, inside the loop
   while (1) {
     // ........................................................................

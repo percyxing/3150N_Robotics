@@ -8,7 +8,7 @@
 // MoveTimePID(TestPara, motor speed, time traveled (sec), time to full speed, heading, false);
 
 //as value 3
-void route1(){
+void twoGoalScoreLeft(){
 
 PIDDataSet TestPara={0,0.0,0.0};
 RunRollerBottom(100);
