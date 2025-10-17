@@ -81,7 +81,6 @@ void test() {
     //MoveEncoderPID(TestPara, 100 , 560 ,0.2,0,true);
 }
 void test2(){  
-    
     PIDDataSet TestPara={1.5,0.1,0.15};
     MoveEncoderPID(TestPara, 100, 12, 0.4, 0, true);
     TurnMaxTimePID(TestPara, 30, 0.5,true);
