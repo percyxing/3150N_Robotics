@@ -233,6 +233,7 @@ Zeroing(true,true);
 if(AutoSelectorVal==1)//Quali close 6 triball auto 
 {
  // test();
+ //test bryan
 }
 
 if(AutoSelectorVal==2)// awp mid steal
