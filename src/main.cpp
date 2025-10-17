@@ -381,10 +381,11 @@ int PTask(void)
 /*                                                                           */
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
+
 void pneumaticControl() {
-  if (Controller1.ButtonL1.pressing()) {
+  if (Controller1.ButtonX.pressed()) {
     IntakeLift.set(true); // Activate the piston
-  } else if (Controller1.ButtonL2.pressing()) {
+  } else if (Controller1.ButtonY.pressed()) {
     IntakeLift.set(false); // Deactivate the piston
   }
 }
@@ -392,7 +393,7 @@ void pneumaticControl() {
 
 void usercontrol(void) {
   EXIT=true;//Force Exit Autosel once drivercontrol began.
-  
+  pneumaticControl();
   // Create tasks once, outside the loop
   task Dtask=task(DriveTask);
   task Atask=task(ATask);
