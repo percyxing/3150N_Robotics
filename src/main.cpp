@@ -365,6 +365,21 @@ int PTask(void)
       ButtonPressingY=1;
       YTaskActiv=0;
       Clamp.set(false);
+
+      static int PistakeActive = 0;
+      static int ButtonPressingR = 0;
+  
+      if(PistakeActive == 0 && Controller1.ButtonR1.pressing() && ButtonPressingR == 0) {
+        ButtonPressingR = 1;
+        PistakeActive = 1;
+        Pistake.set(true);
+      }
+      else if(!Controller1.ButtonR1.pressing()) ButtonPressingR=0;
+      else if(PistakeActive == 1 && Controller1.ButtonR1.pressing() && ButtonPressingR == 0) {
+        ButtonPressingR = 1;
+        PistakeActive = 0;
+        Pistake.set(false);
+      }
     }
 
 
@@ -406,10 +421,7 @@ void usercontrol(void) {
   task Atask=task(ATask);
   task Ptask=task(PTask);
 
-}
-
-  // User control code here, inside the loop
-  while (1) {
+    while (1) {
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to
     // update your motors, etc.
@@ -419,6 +431,7 @@ void usercontrol(void) {
                     // prevent wasted resources.
   }
 }
+
 
 //
 // Main will set up the competition functions and callbacks.
