@@ -414,10 +414,7 @@ void usercontrol(void) {
   task Atask=task(ATask);
   task Ptask=task(PTask);
 
-}
-
-  // User control code here, inside the loop
-  while (1) {
+    while (1) {
     // ........................................................................
     // Insert user code here. This is where you use the joystick values to
     // update your motors, etc.
@@ -427,6 +424,7 @@ void usercontrol(void) {
                     // prevent wasted resources.
   }
 }
+
 
 //
 // Main will set up the competition functions and callbacks.
