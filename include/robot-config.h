@@ -16,6 +16,7 @@ extern digital_out Clamp;
 extern digital_out RightBackWing;
 extern digital_out Pistake;
 extern digital_out IntakeLift;
+extern digital_out Scraper;
 extern inertial Gyro;
 extern digital_out LeftBackWing;
 extern motor IntakeU;

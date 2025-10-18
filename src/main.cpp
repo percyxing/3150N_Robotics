@@ -389,11 +389,18 @@ void pneumaticControl() {
     IntakeLift.set(false); // Deactivate the piston
   }
 }
-
+void ScraperControl() {
+  if (Controller1.ButtonDown.pressed()) {
+    Scraper.set(true); // Activate the piston
+  } else if (Controller1.ButtonUp.pressed()) {
+    Scraper.set(false); // Deactivate the piston
+  }
+}
 
 void usercontrol(void) {
   EXIT=true;//Force Exit Autosel once drivercontrol began.
   pneumaticControl();
+  ScraperControl();
   // Create tasks once, outside the loop
   task Dtask=task(DriveTask);
   task Atask=task(ATask);
