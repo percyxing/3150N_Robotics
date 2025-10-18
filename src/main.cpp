@@ -369,13 +369,13 @@ int PTask(void)
       static int PistakeActive = 0;
       static int ButtonPressingR = 0;
   
-      if(PistakeActive==0 && Controller1.ButtonR1.pressing() && ButtonPressingR==0) {
+      if(PistakeActive == 0 && Controller1.ButtonR1.pressing() && ButtonPressingR == 0) {
         ButtonPressingR = 1;
         PistakeActive = 1;
         Pistake.set(true);
       }
       else if(!Controller1.ButtonR1.pressing()) ButtonPressingR=0;
-      else if(PistakeActive==1 && Controller1.ButtonR1.pressing() && ButtonPressingR==0) {
+      else if(PistakeActive == 1 && Controller1.ButtonR1.pressing() && ButtonPressingR == 0) {
         ButtonPressingR = 1;
         PistakeActive = 0;
         Pistake.set(false);
